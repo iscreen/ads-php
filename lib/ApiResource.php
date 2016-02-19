@@ -114,9 +114,6 @@ abstract class ApiResource extends AdsObject
         $url = static::classUrl();
         list($response, $opts) = static::_staticRequest('get', $url, $params, $options);
         $obj = Util\Util::convertToAdsObject($response->json, $opts);
-        echo "before dump obj\n";
-        var_dump($obj);
-        echo "after dump obj\n";
         if (!is_a($obj, 'Ads\\Collection')) {
             $class = get_class($obj);
             $message = "Expected type \"Ads\\Collection\", got \"$class\" instead";
