@@ -59,11 +59,7 @@ abstract class Util
       'list' => 'Ads\\Collection',
       'product' => 'Ads\\Product',
     );
-    echo "dump resp\n";
-    var_dump($resp);
-    echo "\n";
     if (self::isList($resp)) {
-      echo "convertToAdsObject => self::isList\n";
       $mapped = array();
       foreach ($resp as $i) {
         array_push($mapped, self::convertToAdsObject($i, $opts));
