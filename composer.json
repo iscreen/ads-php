@@ -10,6 +10,7 @@
   ],
   "homepage": "https:\/\/atgames.net\/",
   "license": "MIT",
+  "minimum-stability": "dev",
   "authors": [
     {
       "name": "AtGames and contributors",
