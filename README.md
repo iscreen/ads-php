@@ -32,7 +32,7 @@ require_once('/path/to/ads-php/init.php');
 Simple usage looks like:
 
 ```php
-\Ads\Ads::setApiKey('d8e8fca2dc0f896fd7cb4cb0031ba249');
+\Ads\Ads::setApiKey('OTEwMDA6a1I2UkFTelJhUS1lcWNZSkw1blE=');
 $data = \Ads\Product::all();
 echo $data;
 ```
