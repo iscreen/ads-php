@@ -122,11 +122,20 @@ class ApiRequestor
         if (!$myApiKey) {
             $msg = 'No API key provided.  (HINT: set your API key using '
               . '"Ads::setApiKey(<API-KEY>)".  You can generate API keys from '
-              . 'the Ads web interface.  See https://stripe.com/api for '
-              . 'details, or email support@stripe.com if you have any questions.';
+              . 'the Ads web interface.  See https://api.atgames.net/doc for '
+              . 'details, or email support@atgames.net if you have any questions.';
             throw new Error\Authentication($msg);
         }
-
+        //Signature params
+        if (count($params) > 0) {
+            ksort($params);
+            $result = array_map(function($k, $v){
+                return "$k|$v";
+            }, array_keys($params), array_values($params));
+            $myApiKeys = explode(":", base64_decode($myApiKey));
+            $params['sig'] = hash('sha256', join("|", $result) . "|" . $myApiKeys[1]);
+        }
+        
         $absUrl = $this->_apiBase.$url;
         $params = self::_encodeObjects($params);
         $langVersion = phpversion();
@@ -135,7 +144,7 @@ class ApiRequestor
             'bindings_version' => Ads::VERSION,
             'lang' => 'php',
             'lang_version' => $langVersion,
-            'publisher' => 'stripe',
+            'publisher' => 'atgames',
             'uname' => $uname,
         );
         $defaultHeaders = array(

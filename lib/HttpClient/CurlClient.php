@@ -142,7 +142,7 @@ class CurlClient implements ClientInterface
         $msg = "Could not connect to Ads ($url).  Please check your "
          . "internet connection and try again.  If this problem persists, "
          . "you should check Ads's service status at "
-         . "https://twitter.com/stripestatus, or";
+         . "https://twitter.com/atgames, or";
         break;
       case CURLE_SSL_CACERT:
       case CURLE_SSL_PEER_CERTIFICATE:
@@ -155,7 +155,7 @@ class CurlClient implements ClientInterface
         $msg = "Unexpected error communicating with Ads.  "
          . "If this problem persists,";
     }
-    $msg .= " let us know at support@stripe.com.";
+    $msg .= " let us know at support@atgames.net.";
     $msg .= "\n\n(Network error [errno $errno]: $message)";
     throw new Error\ApiConnection($msg);
   }
