@@ -31,5 +31,10 @@
     "psr-4": {
         "Ads\\": "lib/"
     }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "develop"
+    }
   }
 }
