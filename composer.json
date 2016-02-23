@@ -1,1 +1,34 @@
-{"name":"atgames\/ads-php","type":"library","description":"Atgames Digital Service PHP Library","keywords":["atgames","ads-php","digital service","api"],"minimum-stability":"dev","homepage":"https:\/\/atgames.net\/","license":"MIT","authors":[{"name":"AtGames and contributors","homepage":"https:\/\/gitlab.direct2drive.com\/atgames\/ads-php"}],"require":{"php":">=5.3.3","ext-curl":"*","ext-json":"*","ext-mbstring":"*"},"require-dev":{"phpunit\/phpunit":"~4.0","satooshi\/php-coveralls":"~0.6.1"}}
+{
+  "name": "atgames\/ads-php",
+  "type": "library",
+  "description": "Atgames Digital Service PHP Library",
+  "keywords": [
+    "atgames",
+    "ads-php",
+    "digital service",
+    "api"
+  ],
+  "homepage": "https:\/\/atgames.net\/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "AtGames and contributors",
+      "homepage": "https:\/\/gitlab.direct2drive.com\/atgames\/ads-php"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.3",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-mbstring": "*"
+  },
+  "require-dev": {
+    "phpunit\/phpunit": "~4.0",
+    "satooshi\/php-coveralls": "~0.6.1"
+  },
+  "autoload": {
+    "psr-4": {
+        "Ads\\": "lib/"
+    }
+  }
+}
