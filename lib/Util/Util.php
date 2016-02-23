@@ -77,7 +77,7 @@ abstract class Util
   {
     foreach ($arr as $key=> $val) {
       if (is_array($val)) {
-        arraySortByKey($val, $sort_flags);
+        self::arraySortByKey($val, $sort_flags);
         $arr[$key] = $val;
       }
     }
