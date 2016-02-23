@@ -128,12 +128,10 @@ class ApiRequestor
         }
         //Signature params
         if (count($params) > 0) {
-            ksort($params);
-            $result = array_map(function($k, $v){
-                return "$k|$v";
-            }, array_keys($params), array_values($params));
             $myApiKeys = explode(":", base64_decode($myApiKey));
-            $params['sig'] = hash('sha256', join("|", $result) . "|" . $myApiKeys[1]);
+            Util\Util::arraySortByKey($params);
+            $signed_data = Util\Util::flattenArray($params) . "|" . $myApiKeys[1];
+            $params['sig'] = hash('sha256', $signed_data);
         }
         
         $absUrl = $this->_apiBase.$url;
