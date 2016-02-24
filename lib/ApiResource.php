@@ -53,7 +53,7 @@ abstract class ApiResource extends AdsObject
     public static function classUrl()
     {
         $base = static::className();
-        return "/wl/${base}s";
+        return "/${base}s";
     }
     /**
      * @return string The full API URL for this API resource.
