@@ -6,15 +6,18 @@ namespace Ads;
  */
 class TestCase extends \PHPUnit_Framework_TestCase
 {
-    const API_KEY = 'tGN0bIwXnHdwOa85VABjPdSn8nWY7G7I';
+    const API_KEY = 'OTEwMDA6a1I2UkFTelJhUS1lcWNZSkw1blE=';
+    const API_BASE = 'http://localhost:3000';
     private $mock;
     protected static function authorizeFromEnv()
     {
-        $apiKey = getenv('STRIPE_API_KEY');
+        $apiKey = getenv('ADS_API_KEY');
         if (!$apiKey) {
             $apiKey = self::API_KEY;
         }
+
         Ads::setApiKey($apiKey);
+        Ads::setApiBase(self::API_BASE);
     }
     protected function setUp()
     {
@@ -34,7 +37,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     {
         if (!$this->mock) {
             self::authorizeFromEnv();
-            $this->mock = $this->getMock('\Stripe\HttpClient\ClientInterface');
+            $this->mock = $this->getMock('\Ads\HttpClient\ClientInterface');
             ApiRequestor::setHttpClient($this->mock);
         }
         return $this->mock;

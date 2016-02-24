@@ -72,6 +72,39 @@ abstract class Util
       return $resp;
     }
   }
+
+  public static function arraySortByKey(&$arr, $sort_flags = SORT_REGULAR) 
+  {
+    foreach ($arr as $key=> $val) {
+      if (is_array($val)) {
+        self::arraySortByKey($val, $sort_flags);
+        $arr[$key] = $val;
+      }
+    }
+    ksort($arr);
+  }
+
+  /**
+   * concat array key value with '|'
+   * @param  $array|prepare to concat key value
+   * @return string
+   */
+  public static function flattenArray($array) 
+  {
+    $output = implode('|', array_map(
+      function ($v, $k) {
+        if (is_array($v)) {
+          return sprintf("%s|%s", $k, self::flattenArray($v));
+        } else {
+          return sprintf("%s|%s", $k, $v);
+        }
+      },
+      $array,
+      array_keys($array)
+    ));
+    return $output;
+  }
+
   /**
    * @param string|mixed $value A string to UTF8-encode.
    *
