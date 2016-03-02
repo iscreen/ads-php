@@ -44,6 +44,7 @@ abstract class ApiResource extends AdsObject
         }
         $class = str_replace('_', '', $class);
         $name = urlencode($class);
+        $name = static::_decamelize($name);
         $name = strtolower($name);
         return $name;
     }
@@ -71,6 +72,9 @@ abstract class ApiResource extends AdsObject
         $base = static::classUrl();
         $extn = urlencode($id);
         return "$base/$extn";
+    }
+    public static function _decamelize($string) {
+        return strtolower(preg_replace(['/([a-z\d])([A-Z])/', '/([^_])([A-Z][a-z])/'], '$1_$2', $string));
     }
     private static function _validateParams($params = null)
     {
@@ -126,8 +130,16 @@ abstract class ApiResource extends AdsObject
     protected static function _create($params = null, $options = null)
     {
         self::_validateParams($params);
-        $base = static::baseUrl();
         $url = static::classUrl();
+        list($response, $opts) = static::_staticRequest('post', $url, $params, $options);
+        $obj = Util\Util::convertToAdsObject($response->json, $opts);
+        $obj->setLastResponse($response);
+        return $obj;
+    }
+    protected static function _reserve($params = null, $options = null)
+    {
+        self::_validateParams($params);
+        $url = static::classUrl() . '/reserve';
         list($response, $opts) = static::_staticRequest('post', $url, $params, $options);
         $obj = Util\Util::convertToAdsObject($response->json, $opts);
         $obj->setLastResponse($response);

@@ -6,7 +6,7 @@ class Product extends ApiResource
    * @param string $id The ID of the customer to retrieve.
    * @param array|string|null $opts
    *
-   * @return Customer
+   * @return Product
    */
   public static function retrieve($id, $opts = null)
   {
