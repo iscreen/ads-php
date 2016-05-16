@@ -7,7 +7,7 @@ namespace Ads;
 class TestCase extends \PHPUnit_Framework_TestCase
 {
     const API_KEY = 'OTEwMDA6a1I2UkFTelJhUS1lcWNZSkw1blE=';
-    const API_BASE = 'http://localhost:3000';
+    const API_BASE = 'http://localhost:3000/wl';
     private $mock;
     protected static function authorizeFromEnv()
     {
@@ -42,7 +42,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
         }
         return $this->mock;
     }
-    
+
     /**
      * Genereate a semi-random string
      */
@@ -63,5 +63,5 @@ class TestCase extends \PHPUnit_Framework_TestCase
     {
         return self::generateRandomString().'@'.$domain;
     }
-    
+
 }

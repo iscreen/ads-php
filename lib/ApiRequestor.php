@@ -86,9 +86,9 @@ class ApiRequestor
         }
 
         $error = $resp['error'];
-        $msg = isset($error['message']) ? $error['message'] : null;
+        $msg = isset($resp['error']) ? $resp['error'] : null;
         $param = isset($error['param']) ? $error['param'] : null;
-        $code = isset($error['code']) ? $error['code'] : null;
+        $code = isset($resp['code']) ? $resp['code'] : null;
 
         switch ($rcode) {
             case 400:
@@ -133,7 +133,7 @@ class ApiRequestor
             $signed_data = Util\Util::flattenArray($params) . "|" . $myApiKeys[1];
             $params['sig'] = hash('sha256', $signed_data);
         }
-        
+
         $absUrl = $this->_apiBase.$url;
         $params = self::_encodeObjects($params);
         $langVersion = phpversion();

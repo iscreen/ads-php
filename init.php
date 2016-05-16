@@ -32,5 +32,6 @@ require(dirname(__FILE__) . '/lib/Collection.php');
 require(dirname(__FILE__) . '/lib/Product.php');
 require(dirname(__FILE__) . '/lib/Genre.php');
 require(dirname(__FILE__) . '/lib/GameKey.php');
+require(dirname(__FILE__) . '/lib/Purchase.php');
 
 ?>
