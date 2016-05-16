@@ -145,6 +145,15 @@ abstract class ApiResource extends AdsObject
         $obj->setLastResponse($response);
         return $obj;
     }
+    protected static function _post($subPath, $params = null, $options = null)
+    {
+        self::_validateParams($params);
+        $url = static::classUrl() . $subPath;
+        list($response, $opts) = static::_staticRequest('post', $url, $params, $options);
+        $obj = Util\Util::convertToAdsObject($response->json, $opts);
+        $obj->setLastResponse($response);
+        return $obj;
+    }
     protected function _save($options = null)
     {
         $params = $this->serializeParameters();
@@ -163,4 +172,5 @@ abstract class ApiResource extends AdsObject
         $this->refreshFrom($response, $opts);
         return $this;
     }
+
 }
