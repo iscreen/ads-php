@@ -3,7 +3,7 @@ namespace Ads;
 class Product extends ApiResource
 {
   /**
-   * @param string $id The ID of the customer to retrieve.
+   * @param string $id The ID of the product to retrieve.
    * @param array|string|null $opts
    *
    * @return Product
